@@ -35,12 +35,11 @@ def conectar_e_extrair_dados():
         print("Conexão com o banco de dados H2 estabelecida com sucesso!")
         
         # Consulta SQL para buscar dados dos produtos
-        query = "SELECT NOME, QUANTIDADE_ESTOQUE, PRECO_VENDA FROM PRODUTOS" # Verifique se PRECO_VENDAS está correto
+        query = "SELECT NOME, QUANTIDADE_ESTOQUE, PRECO_VENDA FROM PRODUTOS" 
         
         # Carrega os dados no Pandas DataFrame
         df = pd.read_sql(query, conn)
 
-        # Corrigir os nomes das colunas
         df.columns = ['NOME', 'QUANTIDADE_ESTOQUE', 'PRECO_VENDA']
 
 
