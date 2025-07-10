@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import os
 import jpype 
-
+import numpy as np
 
 DB_NAME_TCP = "estoque_db" 
 
@@ -66,7 +66,7 @@ def gerar_grafico_estoque(df):
     plt.pie(df['QUANTIDADE_ESTOQUE'], labels=df['NOME'], autopct='%1.1f%%', startangle=90)
     plt.title('Distribuição do Estoque por Produto (Gráfico de Pizza)')
     plt.tight_layout()
-    plt.savefig("grafico_estoque_pizza.png")
+    plt.savefig("/home/ranilton/Área de Trabalho/estoque-vendas/Graficos/grafico_estoque_pizza.png")
     plt.close()
 
 def gerar_grafico_preco_venda(df):
@@ -82,7 +82,7 @@ def gerar_grafico_preco_venda(df):
     plt.xticks(rotation=45, ha='right')
     plt.grid(True, linestyle='--', alpha=0.5)
     plt.tight_layout()
-    plt.savefig("grafico_preco_venda_linha.png")
+    plt.savefig("/home/ranilton/Área de Trabalho/estoque-vendas/Graficos/grafico_preco_venda_linha.png")
     plt.close()
 
 def gerar_grafico_estoque_barras(df):
@@ -98,7 +98,7 @@ def gerar_grafico_estoque_barras(df):
     plt.xticks(rotation=45, ha='right')
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("grafico_estoque_barras.png")
+    plt.savefig("/home/ranilton/Área de Trabalho/estoque-vendas/Graficos/grafico_estoque_barras.png")
     plt.close()
 
 def gerar_grafico_lollipop_preco_venda(df):
@@ -123,7 +123,7 @@ def gerar_grafico_lollipop_preco_venda(df):
     plt.ylabel('Produto', fontsize=12)
     plt.grid(axis='x', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("grafico_lollipop_preco_venda.png")
+    plt.savefig("/home/ranilton/Área de Trabalho/estoque-vendas/Graficos/grafico_lollipop_preco_venda.png")
     plt.close()
 
 def gerar_histograma_estoque(df):
@@ -139,8 +139,26 @@ def gerar_histograma_estoque(df):
     plt.ylabel('Número de Produtos', fontsize=12)
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig("histograma_quantidade_estoque.png")
+    plt.savefig("/home/ranilton/Área de Trabalho/estoque-vendas/Graficos/histograma_quantidade_estoque.png")
     plt.close()
+
+def gerar_grafico_ponto_vendas_por_semana(df):
+    if df is None or df.empty:
+        print("Não há dados para gerar o Gráfico de Pontos de Venda por Semana.")
+        return
+    
+
+    x = np.random.rand(50)
+    y = 2 * x + 1 + 0.1 * np.random.randn(50)
+
+    plt.figure(figsize=(10, 6))
+    plt.scatter(x,y)
+    plt.title('Gráfico de Ponto')
+    plt.xlabel('(Exemplo)')
+    plt.ylabel('(Exemplo)')
+    plt.savefig("/home/ranilton/Área de Trabalho/estoque-vendas/Graficos/grafico_vendas_semanais_exemplo.png")
+    plt.close()
+
 
 if __name__ == "__main__":
     print("Certifique-se de que sua aplicação Spring Boot 'EstoqueVendasApplication' está em execução.")
@@ -154,4 +172,5 @@ if __name__ == "__main__":
         gerar_grafico_estoque_barras(dados_produtos) # Novo: Gráfico de Barras
         gerar_grafico_lollipop_preco_venda(dados_produtos) # Novo: Gráfico Pirulito
         gerar_histograma_estoque(dados_produtos) # Novo: Histograma
+    gerar_grafico_ponto_vendas_por_semana(dados_produtos) # Novo: Gráfico de Ponto
 
